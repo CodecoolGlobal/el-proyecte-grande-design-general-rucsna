@@ -19,15 +19,25 @@ export default function Authenticated({ user, header, children }) {
                                     <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
                                 </Link>
                             </div>
-
-                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    Dashboard
-                                </NavLink>
-                                <NavLink href={route('orders.index')} active={route().current('orders.index')}>
-                                    My Orders
-                                </NavLink>
-                            </div>
+                            {!user.is_admin ? (
+                                <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                    <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                        Dashboard
+                                    </NavLink>
+                                    <NavLink href={route('orders.index')} active={route().current('orders.index')}>
+                                        My Orders
+                                    </NavLink>
+                                </div>
+                            ) : (
+                                <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                    <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                        Dashboard
+                                    </NavLink>
+                                    <NavLink href={route('admin.orders.list')} active={route().current('admin.orders.list')}>
+                                        Orders
+                                    </NavLink>
+                                </div>
+                            )}
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ms-6">

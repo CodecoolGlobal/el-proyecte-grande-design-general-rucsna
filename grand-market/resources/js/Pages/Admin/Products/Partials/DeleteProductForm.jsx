@@ -17,7 +17,7 @@ const DeleteProductForm = ({ product }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        destroy(route('admin.product.edit', product.id));
+        destroy(route('admin.product.delete', product.id));
     };
 
     return (

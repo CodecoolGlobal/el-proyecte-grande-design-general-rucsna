@@ -53,6 +53,15 @@ Route::get('/dashboard', function () {
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin/orders', [AdminController::class, 'listOrders'])->name('admin.orders.list');
+
+    Route::get('/admin/products', [AdminController::class, 'listProducts'])->name('admin.products.list');
+    Route::get('/admin/product/{product}', [AdminController::class, 'showProduct'])->name('admin.product.show');
+    Route::patch('/admin/product/{product}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
+    Route::delete('/admin/product/{product}', [AdminController::class, 'deleteProduct'])->name('admin.product.delete');
+    Route::get('/admin/product/delete/{product}', [AdminController::class, 'confirmProductDelete'])->name('admin.product.confirm.delete');
+    Route::get('/admin/new/product', [AdminController::class, 'createProduct'])->name('admin.product.create');
+    Route::patch('/admin/new/product', [AdminController::class, 'storeProduct'])->name('admin.product.store');
+
 });
 
 Route::middleware('auth')->group(function () {

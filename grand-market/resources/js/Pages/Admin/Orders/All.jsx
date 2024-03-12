@@ -28,21 +28,32 @@ export default function All({ auth, orders }) {
                         <div className="p-6 text-gray-900">
                             <h3 className="text-lg font-semibold mb-4">Orders</h3>
                             {orders.length > 0 ? (
-                                <ul>
-                                    {orders.map(order => (
-                                        <li key={order.id}>
-                                            <div>
-                                                <b>ID:</b> {order.id} 
-                                                <b> User ID:</b> {order.user_id}
-                                                <b> Total Price:</b> {order.total_price} 
-                                                <b> Shipping Address:</b> {order.postal_code} {order.city} {order.address} 
-                                                <b> Phone Number:</b> {order.phone_number} 
-                                                <b> Description:</b> {order.description !== null ? order.description : 'No Description Specified'} 
-                                                <b> Order Time:</b> {formatOrderTime(order.created_at)}
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <table className="table-auto w-full">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>User ID</th>
+                                            <th>Total Price</th>
+                                            <th>Shipping Address</th>
+                                            <th>Phone Number</th>
+                                            <th>Description</th>
+                                            <th>Order Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {orders.map(order => (
+                                            <tr key={order.id}>
+                                                <td>{order.id}</td>
+                                                <td>{order.user_id}</td>
+                                                <td>{order.total_price}</td>
+                                                <td>{order.postal_code} {order.city} {order.address}</td>
+                                                <td>{order.phone_number}</td>
+                                                <td>{order.description !== null ? order.description : 'No Description Specified'}</td>
+                                                <td>{formatOrderTime(order.created_at)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             ) : (
                                 <p>No orders found.</p>
                             )}

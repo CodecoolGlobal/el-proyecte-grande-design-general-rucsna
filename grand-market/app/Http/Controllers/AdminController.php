@@ -60,4 +60,9 @@ class AdminController extends Controller
         return to_route('admin.products.list');
     }
 
+    public function createProduct()
+    {
+        return Inertia::render('Admin/Products/Create');
+    }
+
 }

@@ -5,25 +5,22 @@ import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { Transition } from '@headlessui/react';
 
-const DeleteProductForm = ({ product }) => {
+const DeleteCategoryForm = ({ category }) => {
 
     const { data, setData, delete: destroy, errors, processing, recentlySuccessful } = useForm({
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        stock: product.stock
+        name: category.name,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        destroy(route('admin.product.delete', product.id));
+        destroy(route('admin.category.delete', category.id));
     };
 
     return (
         <section className="max-w-xL">
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Product Information</h2>
+                <h2 className="text-lg font-medium text-gray-900">Category Information</h2>
             </header>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-6">
@@ -34,39 +31,6 @@ const DeleteProductForm = ({ product }) => {
                         id="name"
                         className="mt-1 block w-full"
                         value={data.name}
-                        disabled
-                    />
-                </div>
-
-                <div>
-                    <InputLabel htmlFor="description" value="Description" />
-
-                    <TextInput
-                        id="description"
-                        className="mt-1 block w-full"
-                        value={data.description}
-                        disabled
-                    />
-                </div>
-
-                <div>
-                    <InputLabel htmlFor="price" value="Price" />
-
-                    <TextInput
-                        id="price"
-                        className="mt-1 block w-full"
-                        value={data.price}
-                        disabled
-                    />
-                </div>
-
-                <div>
-                    <InputLabel htmlFor="stock" value="Stock" />
-
-                    <TextInput
-                        id="stock"
-                        className="mt-1 block w-full"
-                        value={data.stock}
                         disabled
                     />
                 </div>
@@ -90,4 +54,4 @@ const DeleteProductForm = ({ product }) => {
     );
 };
 
-export default DeleteProductForm;
+export default DeleteCategoryForm;

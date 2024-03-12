@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import CreateProductForm from './Partials/CreateProductForm';
 
-export default function Edit({ auth })
+export default function Create({ auth })
 {
     return (
         <AuthenticatedLayout

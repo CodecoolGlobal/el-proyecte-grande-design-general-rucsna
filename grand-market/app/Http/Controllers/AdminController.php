@@ -35,6 +35,13 @@ class AdminController extends Controller
         ]);
     }
 
+    public function confirmProductDelete(Product $product)
+    {
+        return Inertia::render('Admin/Products/Delete', [
+            'product' => $product
+        ]);
+    }
+
     public function editProduct(Product $product, Request $request)
     {
         $validatedData = $request->validate([

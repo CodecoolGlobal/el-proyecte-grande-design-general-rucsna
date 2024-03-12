@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import DeleteProductForm from './Partials/DeleteProductForm';
 
-export default function Edit({ auth, product })
+export default function Delete({ auth, product })
 {
     return (
         <AuthenticatedLayout

@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Order;
 use Inertia\Response;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -24,6 +25,13 @@ class AdminController extends Controller
 
         return Inertia::render('Admin/Products/All', [
             'products' => $products
+        ]);
+    }
+
+    public function showProduct(Product $product)
+    {
+        return Inertia::render('Admin/Products/Edit', [
+            'product' => $product
         ]);
     }
 

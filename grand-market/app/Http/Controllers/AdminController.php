@@ -47,6 +47,12 @@ class AdminController extends Controller
         return redirect()->route('admin.categories.list');
     }
 
+    public function deleteCategory(Category $category)
+    {
+        $category->delete();
+        return to_route('admin.categories.list');
+    }
+
     public function listProducts(): Response
     {
         $products = Product::all();

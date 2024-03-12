@@ -58,6 +58,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/new/category', [AdminController::class, 'createCategory'])->name('admin.category.create');
     Route::patch('/admin/new/category', [AdminController::class, 'storeCategory'])->name('admin.category.store');
     Route::delete('/admin/category/{category}', [AdminController::class, 'deleteCategory'])->name('admin.category.delete');
+    Route::get('/admin/category/delete/{category}', [AdminController::class, 'confirmCategoryDelete'])->name('admin.category.confirm.delete');
 
     Route::get('/admin/products', [AdminController::class, 'listProducts'])->name('admin.products.list');
     Route::get('/admin/product/{product}', [AdminController::class, 'showProduct'])->name('admin.product.show');

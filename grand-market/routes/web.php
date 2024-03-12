@@ -59,6 +59,8 @@ Route::middleware('admin')->group(function () {
     Route::patch('/admin/product/{product}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
     Route::delete('/admin/product/{product}', [AdminController::class, 'deleteProduct'])->name('admin.product.delete');
     Route::get('/admin/product/delete/{product}', [AdminController::class, 'confirmProductDelete'])->name('admin.product.confirm.delete');
+    Route::get('/admin/new/product', [AdminController::class, 'createProduct'])->name('admin.product.create');
+
 });
 
 Route::middleware('auth')->group(function () {

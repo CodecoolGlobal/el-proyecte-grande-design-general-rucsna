@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use Inertia\Inertia;
+use App\Models\Order;
 use Inertia\Response;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
@@ -16,4 +17,14 @@ class AdminController extends Controller
             'orders' => $orders
         ]);
     }
+
+    public function listProducts(): Response
+    {
+        $products = Product::all();
+
+        return Inertia::render('Admin/Products/All', [
+            'products' => $products
+        ]);
+    }
+
 }

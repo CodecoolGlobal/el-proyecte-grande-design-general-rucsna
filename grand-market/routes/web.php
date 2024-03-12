@@ -56,6 +56,7 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/admin/categories', [AdminController::class, 'listCategories'])->name('admin.categories.list');
     Route::get('/admin/new/category', [AdminController::class, 'createCategory'])->name('admin.category.create');
+    Route::patch('/admin/new/category', [AdminController::class, 'storeCategory'])->name('admin.category.store');
 
     Route::get('/admin/products', [AdminController::class, 'listProducts'])->name('admin.products.list');
     Route::get('/admin/product/{product}', [AdminController::class, 'showProduct'])->name('admin.product.show');

@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import CreateCategoryForm from './Partials/CreateCategoryForm.jsx';
 
-export default function Edit({ auth })
+export default function Create({ auth })
 {
     return (
         <AuthenticatedLayout

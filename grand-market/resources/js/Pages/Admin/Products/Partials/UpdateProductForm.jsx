@@ -87,6 +87,7 @@ const UpdateProductForm = ({ product }) => {
                     </Transition>
                 </div>
             </form>
+            
         </section>
     );
 };

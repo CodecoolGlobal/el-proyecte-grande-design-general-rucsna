@@ -53,6 +53,13 @@ class AdminController extends Controller
         return to_route('admin.categories.list');
     }
 
+    public function confirmCategoryDelete(Category $category)
+    {
+        return Inertia::render('Admin/Categories/Delete', [
+            'category' => $category
+        ]);
+    }
+
     public function listProducts(): Response
     {
         $products = Product::all();

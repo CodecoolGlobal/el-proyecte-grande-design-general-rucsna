@@ -34,6 +34,18 @@ class AdminController extends Controller
         return Inertia::render('Admin/Categories/Create');
     }
 
+    public function storeCategory(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+    
+        $category = new Category();
+        $category->name = $validatedData['name'];
+        $category->save();
+    
+        return redirect()->route('admin.categories.list');
+    }
 
     public function listProducts(): Response
     {

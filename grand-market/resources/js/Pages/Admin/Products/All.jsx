@@ -16,13 +16,6 @@ export default function All({ auth, products }) {
         return new Date(timeString).toLocaleString('en-US', options);
     };
 
-    const handleDelete = async (productId) => {
-        patch(route('admin.product.delete', productId), {
-            preserveScroll: true
-        });
-    };
-    
-
     return (
         <AuthenticatedLayout
             user={auth.user}

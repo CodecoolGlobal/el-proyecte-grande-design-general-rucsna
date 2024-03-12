@@ -53,6 +53,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin/orders', [AdminController::class, 'listOrders'])->name('admin.orders.list');
+    Route::get('/admin/products', [AdminController::class, 'listProducts'])->name('admin.products.list');
 });
 
 Route::middleware('auth')->group(function () {

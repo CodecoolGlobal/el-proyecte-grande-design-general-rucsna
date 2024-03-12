@@ -56,6 +56,7 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/admin/products', [AdminController::class, 'listProducts'])->name('admin.products.list');
     Route::get('/admin/product/{product}', [AdminController::class, 'showProduct'])->name('admin.product.show');
+    Route::get('/admin/product/delete/{product}', [AdminController::class, 'confirmProductDelete'])->name('admin.product.confirm.delete');
     Route::patch('/admin/product/{product}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
 });
 

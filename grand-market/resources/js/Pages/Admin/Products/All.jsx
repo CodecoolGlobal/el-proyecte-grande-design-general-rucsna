@@ -28,21 +28,32 @@ export default function All({ auth, products }) {
                         <div className="p-6 text-gray-900">
                             <h3 className="text-lg font-semibold mb-4">Products</h3>
                             {products.length > 0 ? (
-                                <ul>
-                                    {products.map(product => (
-                                        <li key={product.id}>
-                                            <div>
-                                                <b>ID:</b> {product.id} 
-                                                <b> Name:</b> {product.name}
-                                                <b> Description:</b> {product.description !== null ? product.description : 'No Description Specified'}
-                                                <b> Price:</b> {product.price} 
-                                                <b> Stock:</b> {product.stock} 
-                                                <b> Created at:</b> {formatOrderTime(product.created_at)}
-                                                <b> Updated at:</b> {formatOrderTime(product.updated_at)}
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <table className="table-auto w-full">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Price</th>
+                                            <th>Stock</th>
+                                            <th>Created at</th>
+                                            <th>Updated at</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {products.map(product => (
+                                            <tr key={product.id}>
+                                                <td>{product.id}</td>
+                                                <td>{product.name}</td>
+                                                <td>{product.description !== null ? product.description : 'No Description Specified'}</td>
+                                                <td>{product.price}</td>
+                                                <td>{product.stock}</td>
+                                                <td>{formatOrderTime(product.created_at)}</td>
+                                                <td>{formatOrderTime(product.updated_at)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             ) : (
                                 <p>No Products found.</p>
                             )}

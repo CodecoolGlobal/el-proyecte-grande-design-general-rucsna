@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Inertia\Inertia;
 use App\Models\Order;
 use Inertia\Response;
@@ -16,6 +17,15 @@ class AdminController extends Controller
 
         return Inertia::render('Admin/Orders/All', [
             'orders' => $orders
+        ]);
+    }
+
+    public function listCategories(): Response
+    {
+        $categories = Category::all();
+
+        return Inertia::render('Admin/Categories/All', [
+            'categories' => $categories
         ]);
     }
 

@@ -65,4 +65,15 @@ class AdminController extends Controller
         return Inertia::render('Admin/Products/Create');
     }
 
+    public function storeProduct(Request $request)
+    {
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
+        $product->save();
+        return redirect()->route('admin.products.list');
+    }
+
 }

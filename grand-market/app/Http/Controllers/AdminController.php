@@ -54,4 +54,10 @@ class AdminController extends Controller
         $product->update($validatedData);
     }
 
+    public function deleteProduct(Product $product)
+    {
+        $product->delete();
+        return to_route('admin.products.list');
+    }
+
 }

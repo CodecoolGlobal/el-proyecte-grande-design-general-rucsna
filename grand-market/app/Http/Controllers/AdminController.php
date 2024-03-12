@@ -29,6 +29,12 @@ class AdminController extends Controller
         ]);
     }
 
+    public function createCategory()
+    {
+        return Inertia::render('Admin/Categories/Create');
+    }
+
+
     public function listProducts(): Response
     {
         $products = Product::all();

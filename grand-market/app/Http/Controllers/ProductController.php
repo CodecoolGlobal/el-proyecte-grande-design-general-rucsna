@@ -3,20 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\FlareClient\Http\Exceptions\NotFound;
 
 class ProductController extends Controller
 {
-    public function getByCategory($categoryName)
+    public function getByCategory($categoryName, Request $request)
     {
-        $products = Product::query()->whereHas('categories', function($query) use ($categoryName){
-            $query->where('name', $categoryName);
-        })->get();
+        $category = Category::query()->where('name', $categoryName)->first();
+        if(!$category){
+            return response()->json(['error' => 'Category not found'], 404);
+        }
 
-        //return Inertia::render()
+        $limit = $request->input('limit');
+        $productsQuery = Product::query()->where('id_category', $category->id);
+
+        if($limit !== null){
+            $productsQuery->limit($limit);
+        }
+        $products = $productsQuery->get();
+
+        return Inertia::render('Products', [
+            'products' => $products,
+            'category' => $categoryName
+        ]);
     }
+
 
     public function find($id)
     {

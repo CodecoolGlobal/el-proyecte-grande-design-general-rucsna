@@ -17,7 +17,7 @@ export default function All({ auth, products, categories }) {
     };
 
     const getCategoryName = (categoryId) => {
-        return categories[categoryId-1].name;
+        return categories.find(category => category.id === categoryId).name
     };
 
     return (

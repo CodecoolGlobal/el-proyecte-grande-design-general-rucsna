@@ -30,7 +30,7 @@ export default function All({ auth, categories }) {
                     </NavLink>
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            <h3 className="text-lg font-semibold mb-4">categories</h3>
+                            <h3 className="text-lg font-semibold mb-4">Categories</h3>
                             {categories.length > 0 ? (
                                 <table className="table-auto w-full">
                                     <thead>

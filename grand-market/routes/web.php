@@ -19,32 +19,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    //$electronics = \App\Models\Product::query()->where('id_category', 'Electronics')->limit(5)->get();
-
-//    $clothing = \App\Models\Product::query()->whereHas('categories', function ($query){
-//        $query->where('name', 'Clothing');
-//    })->limit(5)->get();
-//
-//    $household = \App\Models\Product::query()->whereHas('categories', function ($query){
-//        $query->where('name', 'Household');
-//    })->limit(5)->get();
-//
-//    $books = \App\Models\Product::query()->whereHas('categories', function ($query){
-//        $query->where('name', 'Books');
-//    })->limit(5)->get();
-
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        //'products' => $electronics,
-        //'clothing' => $clothing,
-        //'household' => $household,
-        //'books' => $books,
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [ProductController::class, 'limitedProductList'])->name('main');
 
 Route::get('/products/{category}', [ProductController::class, 'getByCategory'])->name('products.category');
 

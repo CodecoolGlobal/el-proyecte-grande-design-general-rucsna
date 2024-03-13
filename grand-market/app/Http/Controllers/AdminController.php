@@ -113,7 +113,11 @@ class AdminController extends Controller
 
     public function createProduct()
     {
-        return Inertia::render('Admin/Products/Create');
+        $categories = Category::all();
+
+        return Inertia::render('Admin/Products/Create', [
+            'categories' => $categories
+        ]);
     }
 
     public function storeProduct(Request $request)
@@ -123,6 +127,7 @@ class AdminController extends Controller
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
+            'categoryId' => 'required|integer|min:0',
         ]);
     
         $product = new Product();
@@ -130,6 +135,7 @@ class AdminController extends Controller
         $product->description = $validatedData['description'];
         $product->price = $validatedData['price'];
         $product->stock = $validatedData['stock'];
+        $product->id_category = $validatedData['categoryId'];
         $product->save();
     
         return redirect()->route('admin.products.list');

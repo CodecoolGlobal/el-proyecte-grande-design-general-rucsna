@@ -1,13 +1,26 @@
-import { Link, Head } from '@inertiajs/react';
+import { Link, Head, usePage } from '@inertiajs/react';
 import LimitedProducts from "@/Pages/LimitedProducts.jsx";
 import GuestLayout from '@/Layouts/GuestLayout.jsx';
 import ShoppingCartLayout from '@/Layouts/ShoppingCartLayout.jsx';
+import React, { useState } from 'react';
 
 export default function Welcome({ auth }) {
+    const { props: { products } } = usePage();
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+
+    const updateCartItemsCount = (count) => {
+        setCartItemsCount(count);
+    };
+
+    const addToCart = (product) => {
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItems.push(product);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+        setCartItemsCount(cartItems.length);
+    };
     return (
         <GuestLayout>
-            <ShoppingCartLayout>
-            </ShoppingCartLayout>
+            <ShoppingCartLayout cartItemsCount={cartItemsCount} updateCartItemsCount={updateCartItemsCount} />
             <Head title="Welcome" />
             <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">

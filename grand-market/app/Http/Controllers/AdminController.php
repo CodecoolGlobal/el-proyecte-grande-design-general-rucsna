@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use Inertia\Inertia;
 use App\Models\Order;
 use Inertia\Response;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 
 class AdminController extends Controller
 {
@@ -17,6 +18,15 @@ class AdminController extends Controller
 
         return Inertia::render('Admin/Orders/All', [
             'orders' => $orders
+        ]);
+    }
+
+    public function listUsers(): Response
+    {
+        $users = User::all();
+
+        return Inertia::render('Admin/Users/All', [
+            'users' => $users
         ]);
     }
 

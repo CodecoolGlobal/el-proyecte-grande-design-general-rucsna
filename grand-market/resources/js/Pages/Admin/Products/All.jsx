@@ -62,7 +62,6 @@ export default function All({ auth, products, categories }) {
                                                 <td>{formatOrderTime(product.updated_at)}</td>
                                                 <td><a href={route('admin.product.show', product.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></td>
                                                 <td><a href={route('admin.product.confirm.delete', product.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a></td>
-                                                
                                             </tr>
                                         ))}
                                     </tbody>

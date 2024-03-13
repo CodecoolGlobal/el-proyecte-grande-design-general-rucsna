@@ -19,7 +19,7 @@ export default function All({ auth, categories }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">categories</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Categories</h2>}
         >
             <Head title="categories" />
 

@@ -1,10 +1,14 @@
 import { Link, Head } from '@inertiajs/react';
 import Products from "@/Pages/Products.jsx";
 import GuestLayout from '@/Layouts/GuestLayout.jsx';
+import ShoppingCartLayout from '@/Layouts/ShoppingCartLayout.jsx';
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
+
     return (
         <GuestLayout>
+            <ShoppingCartLayout>
+            </ShoppingCartLayout>
             <Head title="Welcome" />
             <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
                 <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">

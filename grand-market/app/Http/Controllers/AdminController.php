@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Inertia\Inertia;
 use App\Models\Order;
 use Inertia\Response;
@@ -16,6 +17,46 @@ class AdminController extends Controller
 
         return Inertia::render('Admin/Orders/All', [
             'orders' => $orders
+        ]);
+    }
+
+    public function listCategories(): Response
+    {
+        $categories = Category::all();
+
+        return Inertia::render('Admin/Categories/All', [
+            'categories' => $categories
+        ]);
+    }
+
+    public function createCategory()
+    {
+        return Inertia::render('Admin/Categories/Create');
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+    
+        $category = new Category();
+        $category->name = $validatedData['name'];
+        $category->save();
+    
+        return redirect()->route('admin.categories.list');
+    }
+
+    public function deleteCategory(Category $category)
+    {
+        $category->delete();
+        return to_route('admin.categories.list');
+    }
+
+    public function confirmCategoryDelete(Category $category)
+    {
+        return Inertia::render('Admin/Categories/Delete', [
+            'category' => $category
         ]);
     }
 

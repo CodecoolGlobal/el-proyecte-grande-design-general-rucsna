@@ -18,7 +18,7 @@ export default function All({ auth, orders }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">My Orders</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Orders</h2>}
         >
             <Head title="Orders" />
 
@@ -26,22 +26,34 @@ export default function All({ auth, orders }) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            <h3 className="text-lg font-semibold mb-4">My Orders</h3>
+                            <h3 className="text-lg font-semibold mb-4">Orders</h3>
                             {orders.length > 0 ? (
-                                <ul>
-                                    {orders.map(order => (
-                                        <li key={order.id}>
-                                            <div>
-                                                <b>ID:</b> {order.id} 
-                                                <b> Total Price:</b> {order.total_price} 
-                                                <b> Shipping Address:</b> {order.postal_code} {order.city} {order.address} 
-                                                <b> Phone Number:</b> {order.phone_number} 
-                                                <b> Description:</b> {order.description !== null ? order.description : 'No Description Specified'} 
-                                                <b> Order Time:</b> {formatOrderTime(order.created_at)}
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <table className="table-auto w-full">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>User ID</th>
+                                            <th>Total Price</th>
+                                            <th>Shipping Address</th>
+                                            <th>Phone Number</th>
+                                            <th>Description</th>
+                                            <th>Order Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {orders.map(order => (
+                                            <tr key={order.id}>
+                                                <td>{order.id}</td>
+                                                <td>{order.user_id}</td>
+                                                <td>{order.total_price}</td>
+                                                <td>{order.postal_code} {order.city} {order.address}</td>
+                                                <td>{order.phone_number}</td>
+                                                <td>{order.description !== null ? order.description : 'No Description Specified'}</td>
+                                                <td>{formatOrderTime(order.created_at)}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             ) : (
                                 <p>No orders found.</p>
                             )}

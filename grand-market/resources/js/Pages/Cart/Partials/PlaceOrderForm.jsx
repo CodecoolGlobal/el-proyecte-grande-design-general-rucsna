@@ -12,7 +12,6 @@ const PlaceOrderForm = ({ }) => {
         const fetchCartItems = () => {
             const items = JSON.parse(localStorage.getItem('cart')) || [];
             setCartItems(items);
-            console.log(items);
             setData('cartItems', items)
         };
         fetchCartItems();

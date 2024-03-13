@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import CreateProductForm from './Partials/CreateProductForm';
 
-export default function Create({ auth })
+export default function Create({ auth, categories })
 {
     return (
         <AuthenticatedLayout
@@ -14,7 +14,7 @@ export default function Create({ auth })
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <CreateProductForm></CreateProductForm>
+                        <CreateProductForm categories={categories}></CreateProductForm>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
-import NavLink from '@/Components/NavLink';
 
-export default function All({ auth, categories }) {
+export default function All({ auth, users }) {
 
     const formatOrderTime = (timeString) => {
         const options = {
@@ -19,40 +18,40 @@ export default function All({ auth, categories }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Categories</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Users</h2>}
         >
-            <Head title="categories" />
+            <Head title="users" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <NavLink href={route('admin.category.create')}>
-                        Create New Category
-                    </NavLink>
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
-                            <h3 className="text-lg font-semibold mb-4">Categories</h3>
-                            {categories.length > 0 ? (
+                            <h3 className="text-lg font-semibold mb-4">Users</h3>
+                            {users.length > 0 ? (
                                 <table className="table-auto w-full">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Created At</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Registered</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {categories.map(category => (
-                                            <tr key={category.id}>
-                                                <td>{category.id}</td>
-                                                <td>{category.name}</td>
-                                                <td>{formatOrderTime(category.created_at)}</td>
-                                                <td><a href={route('admin.category.confirm.delete', category.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a></td>
+                                        {users.map(user => (
+                                            <tr key={user.id}>
+                                                <td>{user.id}</td>
+                                                <td>{user.first_name}</td>
+                                                <td>{user.last_name}</td>
+                                                <td>{user.email}</td>
+                                                <td>{formatOrderTime(user.created_at)}</td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                             ) : (
-                                <p>No categories found.</p>
+                                <p>No users found.</p>
                             )}
                         </div>
                     </div>

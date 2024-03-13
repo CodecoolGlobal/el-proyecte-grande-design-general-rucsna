@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import NavLink from '@/Components/NavLink';
 
-export default function All({ auth, products }) {
+export default function All({ auth, products, categories }) {
 
     const formatOrderTime = (timeString) => {
         const options = {
@@ -14,6 +14,10 @@ export default function All({ auth, products }) {
             hour12: false,
         };
         return new Date(timeString).toLocaleString('en-US', options);
+    };
+
+    const getCategoryName = (categoryId) => {
+        return categories.find(category => category.id === categoryId).name
     };
 
     return (
@@ -36,6 +40,7 @@ export default function All({ auth, products }) {
                                     <thead>
                                         <tr>
                                             <th>ID</th>
+                                            <th>Category ID</th>
                                             <th>Name</th>
                                             <th>Description</th>
                                             <th>Price</th>
@@ -43,11 +48,12 @@ export default function All({ auth, products }) {
                                             <th>Created at</th>
                                             <th>Updated at</th>
                                         </tr>
-                                    </thead>
+                                    </thead>    
                                     <tbody>
                                         {products.map(product => (
                                             <tr key={product.id}>
                                                 <td>{product.id}</td>
+                                                <td>{getCategoryName(product.id_category)}</td>
                                                 <td>{product.name}</td>
                                                 <td>{product.description !== null ? product.description : 'No Description Specified'}</td>
                                                 <td>{product.price}</td>
@@ -56,7 +62,6 @@ export default function All({ auth, products }) {
                                                 <td>{formatOrderTime(product.updated_at)}</td>
                                                 <td><a href={route('admin.product.show', product.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a></td>
                                                 <td><a href={route('admin.product.confirm.delete', product.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a></td>
-                                                
                                             </tr>
                                         ))}
                                     </tbody>

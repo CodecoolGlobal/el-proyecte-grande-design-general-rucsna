@@ -5,17 +5,23 @@ import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { Transition } from '@headlessui/react';
 
-const CreateProductForm = ({}) => {
+const CreateProductForm = ({ categories }) => {
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: "Name",
         description: "Description",
         price: 0,
-        stock: 0
+        stock: 0,
+        categoryId: null
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!data.categoryId) {
+            alert("Please select a category.");
+            return;
+        }
 
         patch(route('admin.product.store'), {
             preserveScroll: true
@@ -71,6 +77,23 @@ const CreateProductForm = ({}) => {
                         value={data.stock}
                         onChange={(e) => setData('stock', e.target.value)}
                     />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="categoryId" value="Category" />
+                    <select
+                        id="categoryId"
+                        className="mt-1 block w-full"
+                        value={data.categoryId || ''}
+                        onChange={(e) => setData('categoryId', e.target.value)}
+                    >
+                        <option value="">Select Category</option>
+                        {categories.map(category => (
+                            <option key={category.id} value={category.id}>
+                                {category.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="flex items-center gap-4">

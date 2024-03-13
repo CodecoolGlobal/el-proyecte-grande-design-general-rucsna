@@ -30,6 +30,8 @@ Route::get('/dashboard', function () {
 Route::middleware('admin')->group(function () {
     Route::get('/admin/orders', [AdminController::class, 'listOrders'])->name('admin.orders.list');
 
+    Route::get('/admin/users', [AdminController::class, 'listUsers'])->name('admin.users.list');
+
     Route::get('/admin/categories', [AdminController::class, 'listCategories'])->name('admin.categories.list');
     Route::get('/admin/new/category', [AdminController::class, 'createCategory'])->name('admin.category.create');
     Route::patch('/admin/new/category', [AdminController::class, 'storeCategory'])->name('admin.category.store');

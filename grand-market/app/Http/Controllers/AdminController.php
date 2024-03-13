@@ -73,9 +73,11 @@ class AdminController extends Controller
     public function listProducts(): Response
     {
         $products = Product::all();
+        $categories = Category::all();
 
         return Inertia::render('Admin/Products/All', [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ]);
     }
 

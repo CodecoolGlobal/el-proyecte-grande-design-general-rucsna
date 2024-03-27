@@ -21,6 +21,22 @@ class AdminController extends Controller
         ]);
     }
 
+    public function listOrder(Order $order)
+    {
+        return Inertia::render('Admin/Orders/Single', [
+            'order' => $order
+        ]);
+    }
+
+    public function getOrderDetails(Order $order)
+    {
+        $products = Product::join('product_orders', 'products.id', '=', 'product_orders.product_id')
+                           ->where('product_orders.order_id', $order->id)
+                           ->get(['products.id', 'products.name']);
+    
+        return response()->json($products);
+    }
+
     public function listUsers(): Response
     {
         $users = User::all();
@@ -68,6 +84,20 @@ class AdminController extends Controller
         return Inertia::render('Admin/Categories/Delete', [
             'category' => $category
         ]);
+    }
+
+    
+    public function confirmOrderDelete(Order $order)
+    {
+        return Inertia::render('Admin/Orders/Delete', [
+            'order' => $order
+        ]);
+    }
+
+    public function deleteOrder(Order $order)
+    {
+        $order->delete();
+        return to_route('admin.orders.list');
     }
 
     public function listProducts(): Response
@@ -130,7 +160,6 @@ class AdminController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'categoryId' => 'required|integer|min:0',
-            'cartItems' => 'required|array',
         ]);
     
         $product = new Product();

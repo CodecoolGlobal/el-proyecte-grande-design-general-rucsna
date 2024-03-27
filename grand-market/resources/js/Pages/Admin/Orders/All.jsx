@@ -50,6 +50,8 @@ export default function All({ auth, orders }) {
                                                 <td>{order.phone_number}</td>
                                                 <td>{order.description !== null ? order.description : 'No Description Specified'}</td>
                                                 <td>{formatOrderTime(order.created_at)}</td>
+                                                <td><a href={route('admin.order.details', order.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</a></td>
+                                                <td><a href={route('admin.order.confirm.delete', order.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a></td>
                                             </tr>
                                         ))}
                                     </tbody>

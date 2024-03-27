@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('address', 255);
             $table->string('phone_number', 255);
             $table->string('description', 255)->nullable();
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

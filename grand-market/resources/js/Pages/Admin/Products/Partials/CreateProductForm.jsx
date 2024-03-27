@@ -8,10 +8,10 @@ import { Transition } from '@headlessui/react';
 const CreateProductForm = ({ categories }) => {
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        name: "Name",
-        description: "Description",
-        price: 0,
-        stock: 0,
+        name: "",
+        description: "",
+        price: "",
+        stock: "",
         categoryId: null
     });
 

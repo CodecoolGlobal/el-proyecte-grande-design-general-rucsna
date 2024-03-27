@@ -28,6 +28,14 @@ class AdminController extends Controller
         ]);
     }
 
+    public function getOrderDetails(Order $order)
+    {
+        $products = Product::join('product_orders', 'products.id', '=', 'product_orders.product_id')
+                           ->where('product_orders.order_id', $order->id)
+                           ->get(['products.id', 'products.name']);
+    
+        return response()->json($products);
+    }
 
     public function listUsers(): Response
     {

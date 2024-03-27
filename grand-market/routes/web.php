@@ -31,6 +31,7 @@ Route::get('/dashboard', function () {
 Route::middleware('admin')->group(function () {
     Route::get('/admin/orders', [AdminController::class, 'listOrders'])->name('admin.orders.list');
     Route::get('/admin/order/delete/{order}', [AdminController::class, 'confirmOrderDelete'])->name('admin.order.confirm.delete');
+    Route::delete('/admin/order/{order}', [AdminController::class, 'deleteOrder'])->name('admin.order.delete');
 
     Route::get('/admin/users', [AdminController::class, 'listUsers'])->name('admin.users.list');
 

@@ -49,7 +49,7 @@ Route::middleware('admin')->group(function () {
     Route::delete('/admin/product/{product}', [AdminController::class, 'deleteProduct'])->name('admin.product.delete');
     Route::get('/admin/product/delete/{product}', [AdminController::class, 'confirmProductDelete'])->name('admin.product.confirm.delete');
     Route::get('/admin/new/product', [AdminController::class, 'createProduct'])->name('admin.product.create');
-    Route::patch('/admin/new/product', [AdminController::class, 'storeProduct'])->name('admin.product.store');
+    Route::post('/admin/new/product', [AdminController::class, 'storeProduct'])->name('admin.product.store');
 });
 
 Route::middleware('auth')->group(function () {

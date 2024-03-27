@@ -44,6 +44,7 @@ export default function Products({ category }) {
                                     key={product.id}
                                     className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md p-4"
                                 >
+                                    <img src={'/storage/' + product.image_path} alt={product.name} className="w-full mb-4" />
                                     <h3 className="text-lg font-semibold mb-2">
                                         {product.name}
                                     </h3>

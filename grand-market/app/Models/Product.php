@@ -13,7 +13,8 @@ class Product extends Model
         'description',
         'id_category',
         'price',
-        'stock'
+        'stock',
+        'image_path',
     ];
 
     public function orders(){

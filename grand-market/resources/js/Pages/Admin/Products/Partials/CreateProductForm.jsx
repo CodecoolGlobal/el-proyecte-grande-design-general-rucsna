@@ -7,12 +7,13 @@ import { Transition } from '@headlessui/react';
 
 const CreateProductForm = ({ categories }) => {
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    const { data, setData, post, errors, processing, recentlySuccessful } = useForm({
         name: "",
         description: "",
         price: "",
         stock: "",
-        categoryId: null
+        categoryId: null,
+        image: "",
     });
 
     const handleSubmit = (e) => {
@@ -23,7 +24,7 @@ const CreateProductForm = ({ categories }) => {
             return;
         }
 
-        patch(route('admin.product.store'), {
+        post(route('admin.product.store'), {
             preserveScroll: true
         });
     };
@@ -77,6 +78,13 @@ const CreateProductForm = ({ categories }) => {
                         value={data.stock}
                         onChange={(e) => setData('stock', e.target.value)}
                     />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="image" value="Image" />
+
+                    <input type="file" onChange={e => setData('image', e.target.files[0])} />
+
                 </div>
 
                 <div>

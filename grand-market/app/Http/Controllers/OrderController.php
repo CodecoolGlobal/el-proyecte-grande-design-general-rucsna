@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Order;
+use App\Models\Product;
 use Inertia\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,21 @@ class OrderController extends Controller
         $cartItems = $request->input('cartItems');
     
         $totalPrice = 0;
+        $insufficientStock = false;
+    
+        foreach ($cartItems as $item) {
+            $product = Product::findOrFail($item['id']);
+            $quantity = $item['quantity'] ?? 1;
+            if ($product->stock < $quantity) {
+                $insufficientStock = true;
+                break;
+            }
+            $totalPrice += $item['price'] * $quantity;
+        }
+    
+        if ($insufficientStock) {
+            return response()->json(['error' => 'Insufficient stock for one or more items'], 404);
+        }
     
         $order = new Order();
         $order->user_id = $userId;
@@ -44,22 +60,19 @@ class OrderController extends Controller
         $order->address = $validatedData['address'];
         $order->phone_number = $validatedData['phone_number'];
         $order->description = $validatedData['description'];
-    
-        foreach ($cartItems as $item) {
-            $quantity = $item['quantity'] ?? 1;
-            $totalPrice += $item['price'] * $quantity;
-        }
-    
         $order->total_price = $totalPrice;
         $order->save();
     
-        $orderId = $order->id;
-    
         foreach ($cartItems as $item) {
             $productId = $item['id'];
+            $quantity = $item['quantity'] ?? 1;
+    
+            $product = Product::findOrFail($productId);
+            $product->stock -= $quantity;
+            $product->save();
     
             DB::table('product_orders')->insert([
-                'order_id' => $orderId,
+                'order_id' => $order->id,
                 'product_id' => $productId,
             ]);
         }

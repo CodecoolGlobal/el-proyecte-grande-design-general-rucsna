@@ -70,6 +70,14 @@ class AdminController extends Controller
         ]);
     }
 
+    
+    public function confirmOrderDelete(Order $order)
+    {
+        return Inertia::render('Admin/Orders/Delete', [
+            'order' => $order
+        ]);
+    }
+
     public function listProducts(): Response
     {
         $products = Product::all();

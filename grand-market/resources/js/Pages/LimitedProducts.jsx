@@ -32,9 +32,6 @@ export default function LimitedProducts({category, searchedProducts}) {
                                     <p className="text-gray-500 dark:text-gray-400">
                                         {sp.stock}
                                     </p>
-                                    <button onClick={() => addToCart(product)}>
-                                        Add to Cart
-                                    </button>
                                 </div>))}
                             <NavLink href={route("main")}>Back</NavLink>
                         </div>
@@ -57,15 +54,17 @@ export default function LimitedProducts({category, searchedProducts}) {
                                                 <p className="text-gray-900 dark:text-gray-100 font-bold">
                                                     {product.price}
                                                 </p>
-                                                <button onClick={() => addToCart(product)}>
-                                                    Add to Cart
-                                                </button>
                                             </div>
                                         ))
                                         }
                                     </div>
                                 ) : null
                             ))}
+                            <img
+                                src="arrow_picture_url"
+                                alt="Arrow"
+                                className="absolute inset-y-10 right-0 mb-6 mr-6 w-6 h-6"
+                            />
                         </div>
                     )}
                 </div>

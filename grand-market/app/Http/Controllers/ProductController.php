@@ -50,6 +50,13 @@ class ProductController extends Controller
         ]);
     }
 
+    public function findByName($term)
+    {
+        if(!$term){
+            return response()->json(['error' => 'Not found'], 404);
+        }
+        return Product::query()->where('name', 'LIKE', '%' . $term . '%')->get();
+    }
 
     public function find($id)
     {

@@ -22,7 +22,9 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [ProductController::class, 'limitedProductList'])->name('main');
 
-Route::get('/products/{category}', [ProductController::class, 'getByCategory'])->name('products.category');
+Route::get('/products/{category?}', [ProductController::class, 'getByCategory'])->name('products.category');
+
+Route::get('/search/{term}', [ProductController::class, 'findByName'])->name('products.search');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

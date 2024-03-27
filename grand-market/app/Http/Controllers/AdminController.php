@@ -21,6 +21,14 @@ class AdminController extends Controller
         ]);
     }
 
+    public function listOrder(Order $order)
+    {
+        return Inertia::render('Admin/Orders/Single', [
+            'order' => $order
+        ]);
+    }
+
+
     public function listUsers(): Response
     {
         $users = User::all();

@@ -78,6 +78,12 @@ class AdminController extends Controller
         ]);
     }
 
+    public function deleteOrder(Order $order)
+    {
+        $order->delete();
+        return to_route('admin.orders.list');
+    }
+
     public function listProducts(): Response
     {
         $products = Product::all();

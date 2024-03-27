@@ -1,16 +1,11 @@
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
+import SearchProducts from "@/Pages/SearchProducts.jsx";
 
-export default function Guest({ children }) {
+export default function Guest({ children, setSearchedProducts }) {
+
     return (
-        <div className="min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
-                </Link>
-            </div>
-
-            <div className="w-full sm:max-w-xl mt-8 px-8 py-6 bg-white shadow-lg overflow-hidden sm:rounded-lg">
+        <div className="">
+            <div className="">
+                <SearchProducts setSearchedProducts={setSearchedProducts}/>
                 {children}
             </div>
         </div>

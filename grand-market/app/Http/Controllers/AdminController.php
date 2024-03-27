@@ -160,7 +160,10 @@ class AdminController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'categoryId' => 'required|integer|min:0',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
+
+        $imagePath = $request->file('image')->store('products', 'public');
     
         $product = new Product();
         $product->name = $validatedData['name'];
@@ -168,6 +171,7 @@ class AdminController extends Controller
         $product->price = $validatedData['price'];
         $product->stock = $validatedData['stock'];
         $product->id_category = $validatedData['categoryId'];
+        $product->image_path = $imagePath;
         $product->save();
     
         return redirect()->route('admin.products.list');

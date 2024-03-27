@@ -31,15 +31,18 @@ class ProductController extends Controller
         ]);
     }
 
-    public function getByCategory($categoryName)
+    public function getByCategory($categoryName = "")
     {
+        if(!$categoryName){
+            $products = Product::all();
+            return Inertia::render('Products', ['products' => $products]);
+        }
         $category = Category::query()->where('name', $categoryName)->first();
         if(!$category){
             return response()->json(['error' => 'Category not found'], 404);
         }
 
-        $productsQuery = Product::query()->where('id_category', $category->id);
-        $products = $productsQuery->get();
+        $products = Product::query()->where('id_category', $category->id)->get();
 
         return Inertia::render('Products', [
             'products' => $products,
